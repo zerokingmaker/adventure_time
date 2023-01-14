@@ -14,7 +14,7 @@ class Monster():
     def damage_manager(self, player):
         damage_output = self.stats['attack'] - player.stats['defense']
         if damage_output <= 0:
-            print(f'{player.name} took {damage_output} damages')
+            print(f'{player.name} took 0 damages')
         else:
             player.stats['hp'] -= damage_output
             print(f'{player.name} took {damage_output} damages')
@@ -24,7 +24,7 @@ class Monster():
     def take_damage(self, damage, player):
         damage_taken = damage - self.stats['defense']
         if damage_taken <= 0:
-            print(f'{self.name} took {damage_taken} damages from {player.name}')
+            print(f'{self.name} took 0 damages from {player.name}')
         else:
             self.stats['hp'] -= damage_taken
             print(f'{self.name} took {damage_taken} damages from {player.name}')
