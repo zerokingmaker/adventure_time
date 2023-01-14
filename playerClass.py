@@ -90,9 +90,9 @@ class Mage(Hero):
     def __init__(self, name):
         super().__init__(name,'Mage')
         self.stats = {
-                'hp' : self.level * 4,
+                'hp' : self.level * 6,
                 'attack' : self.level * 2,
-                'defense' : self.level * 4,
+                'defense' : self.level * 2,
                 'magic' : self.level * 13,
                 'mana' : 200
         }
@@ -104,7 +104,7 @@ class Warior(Hero):
         self.stats = {
                 'hp' : self.level * 10,
                 'attack' : self.level * 6,
-                'defense' : self.level * 8,
+                'defense' : self.level * 4,
                 'magic' : self.level * 0
         }
 

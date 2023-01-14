@@ -12,6 +12,8 @@ player_specialisation = input("What will be your class ? Mage or Warior ? ")
 # check player specialistion
 if player_specialisation == "Mage":
     new_player = pC.Mage(player_name)
+    fireball = pC.Ability("fireball", 10, "throws a fireball", 5, 'Mage')
+    new_player.learn_ability(fireball)
 elif player_specialisation == "Warior":
     new_player = pC.Warior(player_name)
 else:
@@ -21,10 +23,7 @@ else:
 print(f"Welcome {new_player.name} to this new world !")
 print("You will have to overcome many trials along your adventure. It will be a series of choices... Good luck !")
 
-choice1 = input("You arrive in a dark cave and you seem to see two paths. Which one do you take? Right or left")
+choice1 = input("You arrive in a dark cave and you seem to see two paths. Which one do you take? Right or left ")
 
-# choice 1 manager :
-if choice1 == 'Right':
-    pass
-else:
-    pass
+# the cave
+eMgr.event_manager_1(choice1, new_player)
