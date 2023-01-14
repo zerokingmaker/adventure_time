@@ -1,8 +1,6 @@
 class Hero():
-    def __init__(self, name, race, gender, specialisation):
+    def __init__(self, name, specialisation):
         self.name = name
-        self.race = race
-        self.gender = gender
         self.level = 1
         self.isAlive = True
         self.stats = {}
@@ -21,7 +19,8 @@ class Hero():
             else:
                 self.stats['mana'] -= ability.mana_cost
                 if ability.damage > 0:
-                    damage_output = ability.damage * self.status['magic']
+                    damage_output = ability.damage * self.stats['magic']
+                    print(f"You used {ability.name}")
                     print(f'You did {damage_output} damages')
                     return damage_output
                 else:
@@ -40,9 +39,10 @@ class Hero():
             print("You have already learned this ability")
         elif type(ability) == Ability:  # to check if it's from the Ability class
             if ability.class_requirement != self.specialisation:
-                return "You cannot learn this ability"
+                return print("You cannot learn this ability")
             else:
                 self.abilities.update({ability.name : ability.effect})
+                print(f"You learned {ability.name}")
         else:
             print("This ability doesn't exist !")
 
@@ -79,10 +79,16 @@ class Hero():
             self.isAlive = True
         
     
+    # print a summary of the player
+    def __repr__(self):
+        current_hp = self.stats['hp']
+        current_inventory = len(self.inventory.keys())
+        return f'Player {self.name} have currently {current_hp} hp. You have in your inventory {current_inventory} items'
+    
 
 class Mage(Hero):
-    def __init__(self, name, race, gender, specialisation):
-        super().__init__(name, race, gender,'Mage')
+    def __init__(self, name):
+        super().__init__(name,'Mage')
         self.stats = {
                 'hp' : self.level * 4,
                 'attack' : self.level * 2,
@@ -93,8 +99,8 @@ class Mage(Hero):
 
 
 class Warior(Hero):
-    def __init__(self, name, race, gender, specialisation):
-        super().__init__(name, race, gender, 'Warior')
+    def __init__(self, name):
+        super().__init__(name, 'Warior')
         self.stats = {
                 'hp' : self.level * 10,
                 'attack' : self.level * 6,
@@ -110,8 +116,21 @@ class Ability():
         self.damage = damage
         self.class_requirement = class_requirement
 
+    
+    # print a summary of the ability
+    def __repr__(self):
+        return f'{self.name} has the effect : {self.effect}'
+
+
 
 class Item():
     def __init__(self, name, effect):
         self.name = name
         self.effect = effect
+
+    # print a summary of the item
+    def __repr__(self):
+        return f'{self.name} has the effect : {self.effect}'
+
+
+
